@@ -58,6 +58,10 @@
     if(isset($_GET['id'])){
     ?> 
     <a href="update.php?id=<?=$_GET['id']?>">Update</a> 
+    <form action="delete_process.php" method="post">
+        <input type="hidden" name="id" value="<?=$_GET['id']?>">
+        <input type="submit" value="Delete">
+    </form>
     <?php
     }?>
 
