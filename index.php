@@ -6,11 +6,30 @@
 </head>
 <body>
     <h1><a href="index.php">WEB</a></h1>
-    <ol>
+    <!-- <ol>
         <li><a href="index.php?id=HTML">HTML</a></li>
         <li><a href="index.php?id=CSS">CSS</a></li>
         <li><a href="index.php?id=JavaScript">JavaScript</a></li>
+    </ol> -->
+    <?php
+    //data 디렉토리에 있는 파일의 목록을 가져온 후, li와 a 태그를 이용해서 글목록 만들기
+    $list = scandir('data');
+    $i = 0;
+    ?>
+    <ol>
+        <?php while($i<count($list)){
+            if($list[$i] != '.'){
+                if($list[$i] != '..'){
+                    ?>
+                    <li><a href="index.php?id=<?=$list[$i]?>"><?=$list[$i]?></a></li>
+                    <?php
+                }
+            }
+            $i = $i+1;
+        }
+        ?>
     </ol>
+    
     <h2>
         <?php
         if(isset($_GET['id'])){
