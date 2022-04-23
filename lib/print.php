@@ -1,7 +1,7 @@
 <?php
     function print_title(){
         if(isset($_GET['id'])){
-            echo $_GET['id'];
+            echo htmlspecialchars($_GET['id']);
             }else {
                 echo "WELCOME";
             }
@@ -9,7 +9,7 @@
 
     function print_description(){
         if(isset($_GET['id'])){
-            echo file_get_contents("./data/".$_GET['id']);}
+            echo htmlspecialchars(file_get_contents("./data/".$_GET['id']));}
             else{
                 echo "Hello, PHP";
             }
@@ -23,12 +23,11 @@
     <ol>
         <?php 
             while($i<count($list)){
+                $title = htmlspecialchars($list[$i]);
             //scandir은 .과 ..의 디렉토리도 포함
                 if($list[$i] != '.'){ 
                     if($list[$i] != '..'){
-                        ?>
-                        <li><a href="index.php?id=<?=$list[$i]?>"><?=$list[$i]?></a></li>
-                        <?php
+                        echo "<li><a href=\"index.php?id=$title\">$title</a></li>\n";
                     }
             }
             $i = $i+1;
